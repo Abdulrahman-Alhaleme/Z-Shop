@@ -1,0 +1,118 @@
+.sign-up {
+    background-image: url(../../assets/images/sigh-up.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Marhey', cursive;
+}
+
+/* Start nav-bar */
+nav {
+    background-color: black;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover {
+    color: #76B5C4;
+}
+
+
+.navbar .navbar-toggler {
+    color: white;
+    font-size: 25px;
+    border-color: white;
+}
+
+.navbar .line {
+    height: 25px;
+    width: 5px;
+    margin-left: 15px;
+    border-left: 2px solid white;
+}
+
+/* End nav-bar */
+
+.sign-up .container {
+    min-height: calc(100vh - 72px);
+    align-content: center;
+    padding-top: 8rem;
+}
+
+.card {
+    height: 460px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: #106BA9;
+}
+
+.social_icon span:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.card-header h3 {
+    color: white;
+    display: flex;
+    justify-content: end;
+}
+
+.social_icon {
+    position: absolute;
+    top: -45px;
+}
+
+.input-group-prepend span {
+    width: 50px;
+    background-color: #106BA9;
+    color: black;
+    border: 0 !important;
+}
+
+input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember {
+    color: white;
+}
+
+.remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login_btn {
+    color: black;
+    background-color: #106BA9;
+    width: 100px;
+}
+
+.login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.links {
+    color: white;
+}
+
+.links a {
+    margin-left: 4px;
+}
