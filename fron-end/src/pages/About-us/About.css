@@ -1,0 +1,26 @@
+.main__about {
+    background-image: url(../../assets/images/about-us-bg.png);
+    min-height: 50rem;
+
+}
+
+.about__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 4rem;
+}
+
+.about__card {
+    margin-top: 5rem;
+    font-size: 2rem;
+    direction: rtl;
+}
+
+.about__card p {
+    font-weight: 100;
+    color: gray;
+}
+
+.abour__row {
+    flex-direction: row-reverse;
+}

@@ -3,7 +3,9 @@ import "./App.css";
 import Layout from "./components/layout/Layout.jsx";
 
 function App() {
-  return <Layout />;
+  return <>
+    <Layout />
+  </>
 }
 
 export default App;

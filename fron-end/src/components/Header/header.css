@@ -36,3 +36,42 @@ nav {
     font-weight: bold;
 
 }
+
+.b__t__n {
+    width: 9.5em;
+    height: 2em;
+    margin: 0.5em;
+    border: 1px solid white;
+    background: #000000;
+    color: rgb(255, 255, 255);
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.b__t__n:hover {
+    color: black;
+}
+
+.b__t__n:after {
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+}
+
+.b__t__n:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}

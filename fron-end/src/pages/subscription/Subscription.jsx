@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 export const Subscription = () => {
   return (
     <>
+      <Header />
       <div className="subscription text-center pt-5 pb-5">
         <div className="container">
           <div className="main-titale mt-5 mb-5 position-relative ">
@@ -83,6 +86,7 @@ export const Subscription = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

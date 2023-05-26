@@ -2,10 +2,13 @@ import React from "react";
 import "./Home.css";
 import About__img from "../../assets/images/Flower shop, JP NIK.jpeg";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 const Home = () => {
   return (
     <>
+      <Header />
       <div class="landing d-flex justify-content-center align-items-center ">
         <div class="text-center">
           <h1 class=" mb-5 ">أصبحَ صِناعة موقِعك الإلكتروني سهلًا الآن</h1>
@@ -236,6 +239,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

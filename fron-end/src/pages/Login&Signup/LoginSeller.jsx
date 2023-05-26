@@ -1,19 +1,19 @@
 import React from "react";
-import "./Signup.css";
 import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header";
+import "./LoginSeller.css";
 import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header.jsx";
 
-const Signup = () => {
+const LoginSeller = () => {
   return (
     <>
       <Header />
-      <div className="sign-up">
+      <div className="log__in">
         <div className="container">
           <div className="d-flex justify-content-center h-100">
             <div className="card">
               <div className="card-header">
-                <h3>حساب جديد</h3>
+                <h3 className="d-flex justify-content-end">تسجيل دخول</h3>
                 <div className="d-flex justify-content-end social_icon">
                   <span>
                     <i className="fab fa-facebook-square" />
@@ -30,19 +30,10 @@ const Signup = () => {
                 <form>
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
-                      <i className="fa-solid fa-envelope" />
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="البريد الألكتروني"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">
-                      <i className="fa-solid fa-user" />
+                      <i
+                        className="fa-solid fa-user"
+                        style={{ color: "#000000" }}
+                      />
                     </span>
                     <input
                       type="text"
@@ -64,34 +55,14 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
-                  <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">
-                      <i className="fas fa-key " />
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="تأكيد كلمة السر"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">
-                      <i className="fa-solid fa-shop" />
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="أسم المتجر"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
+                  <div className="row align-items-center remember pt-2">
+                    <input type="checkbox" />
+                    تذكرني
                   </div>
                   <div className="form-group d-flex justify-content-end ">
                     <input
                       type="submit"
-                      defaultValue="البدأ"
+                      defaultValue="دخول"
                       className="btn float-right login_btn"
                     />
                   </div>
@@ -99,7 +70,10 @@ const Signup = () => {
               </div>
               <div className="card-footer">
                 <div className="d-flex justify-content-center links">
-                  <Link to="/login">تسجيل دخول</Link>!هل تملك حسابً بالفعل
+                  <Link to="/signupSeller">فتح حساب جديد</Link>ألا تمتلك حسابً؟
+                </div>
+                <div className="d-flex justify-content-center">
+                  <Link to="#">هل نسيت كلمة السر؟</Link>
                 </div>
               </div>
             </div>
@@ -111,4 +85,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default LoginSeller;

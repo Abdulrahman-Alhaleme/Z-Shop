@@ -1,0 +1,87 @@
+.sign__up {
+    background-image: url(../../assets/images/login.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Marhey', cursive;
+}
+
+
+.sign__up .container {
+    min-height: calc(100vh - 72px);
+    align-content: center;
+    padding-top: 8rem;
+}
+
+.sign__up .card {
+    height: 400px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.sign__up .social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: #106BA9;
+}
+
+.sign__up .social_icon span:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.sign__up .card-header h3 {
+    color: white;
+    display: flex;
+    justify-content: end;
+}
+
+.sign__up .social_icon {
+    position: absolute;
+    top: -45px;
+}
+
+.sign__up .input-group-prepend span {
+    width: 50px;
+    background-color: #106BA9;
+    color: black;
+    border: 0 !important;
+}
+
+.sign__up input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+
+}
+
+.sign__up .remember {
+    color: white;
+}
+
+.sign__up .remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.sign__up .login_btn {
+    color: black;
+    background-color: #106BA9;
+    width: 100px;
+}
+
+.sign__up .login_btn:hover {
+    color: black;
+    background-color: white;
+}
+
+.sign__up .links {
+    color: white;
+}
+
+.sign__up .links a {
+    margin-left: 4px;
+}

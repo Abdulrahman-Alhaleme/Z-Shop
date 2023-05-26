@@ -1,10 +1,13 @@
 import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
 
 const Login = () => {
   return (
     <>
+      <Header />
       <div className="log-in">
         <div className="container">
           <div className="d-flex justify-content-center h-100">
@@ -77,6 +80,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

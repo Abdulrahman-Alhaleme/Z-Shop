@@ -1,0 +1,18 @@
+.customer__link {
+    padding-bottom: 20px;
+}
+
+.container__link {}
+
+.bottom_line {
+    margin-left: 24.3rem;
+    border-bottom: 2px solid black;
+    width: 32rem;
+
+}
+
+.Nav_ {
+    height: 120px;
+    display: flex;
+    align-items: center;
+}

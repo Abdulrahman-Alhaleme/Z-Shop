@@ -1,0 +1,30 @@
+.nav-links {
+    list-style: none;
+    text-decoration: none;
+    color: gray;
+    font-size: 1.3rem;
+}
+
+
+
+.nav-links:hover {
+    color: black;
+}
+
+
+.actiive {
+    color: black;
+}
+
+
+.nav_links {
+    text-decoration: none;
+
+}
+
+.Nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    box-shadow: 3px 3px 3px;
+}

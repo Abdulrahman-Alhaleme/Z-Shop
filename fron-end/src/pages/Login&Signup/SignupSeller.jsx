@@ -1,14 +1,15 @@
 import React from "react";
-import "./Signup.css";
+
 import { Link } from "react-router-dom";
+import "./SignupSeller.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
-const Signup = () => {
+const SignupSeller = () => {
   return (
     <>
       <Header />
-      <div className="sign-up">
+      <div className="sign__up">
         <div className="container">
           <div className="d-flex justify-content-center h-100">
             <div className="card">
@@ -76,18 +77,6 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
-                  <div className="input-group mb-3">
-                    <span className="input-group-text" id="basic-addon1">
-                      <i className="fa-solid fa-shop" />
-                    </span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="أسم المتجر"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                    />
-                  </div>
                   <div className="form-group d-flex justify-content-end ">
                     <input
                       type="submit"
@@ -99,7 +88,7 @@ const Signup = () => {
               </div>
               <div className="card-footer">
                 <div className="d-flex justify-content-center links">
-                  <Link to="/login">تسجيل دخول</Link>!هل تملك حسابً بالفعل
+                  <Link to="/loginSeller">تسجيل دخول</Link>!هل تملك حسابً بالفعل
                 </div>
               </div>
             </div>
@@ -111,4 +100,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupSeller;

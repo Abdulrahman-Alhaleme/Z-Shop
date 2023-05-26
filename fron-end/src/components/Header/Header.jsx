@@ -8,16 +8,20 @@ import { Link } from "react-router-dom";
 
 const nav__links = [
   {
-    path: "home",
+    path: "/home",
     display: "الرئيسية",
   },
   {
-    path: "subscription",
+    path: "/subscription",
     display: "الأشتراكات",
   },
   {
-    path: "shop",
-    display: "المتجر",
+    path: "/shopes",
+    display: "المتاجر",
+  },
+  {
+    path: "/about-us",
+    display: "من نحن",
   },
 ];
 
@@ -29,7 +33,7 @@ const Header = () => {
     <>
       <nav className="navbar navbar-expand-lg sticky-top  ">
         <div className="container">
-          <img src={Logo} width="150px" height="50px" alt="" />
+          <img src={Logo} width="300px" height="30px" alt="" />
           <button
             className="navbar-toggler"
             type="button"
@@ -56,10 +60,13 @@ const Header = () => {
             </ul>
             <div className="line ps-3 pe-3 d-none d-lg-block" />
             <Link
-              className="btn main-btn rounded-pill btn-primary ms-lg-5"
-              to="/newshop"
+              className="btn b__t__n rounded-pill  ms-lg-5"
+              to="/loginSeller"
             >
               تسجيل دخول
+            </Link>
+            <Link className="btn b__t__n rounded-pill  ms-lg-3" to="/signup">
+              افتح متجرك الخاص
             </Link>
           </div>
         </div>
