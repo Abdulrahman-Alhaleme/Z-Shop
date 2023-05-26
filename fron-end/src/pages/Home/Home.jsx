@@ -11,7 +11,7 @@ const Home = () => {
       <Header />
       <div class="landing d-flex justify-content-center align-items-center ">
         <div class="text-center">
-          <h1 class=" mb-5 ">أصبحَ صِناعة موقِعك الإلكتروني سهلًا الآن</h1>
+          <h1 class=" mb-5 ">أصبحَ فتح متجرك الإلكتروني سهلًا الآن</h1>
           <h1 class=" mb-5 ">ما الذي تنتَظِرُه ؟ ابدأ الآن</h1>
           <Link
             class="btn main-btn rounded-pill btn-primary ms-lg-5"
