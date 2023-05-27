@@ -1,8 +1,38 @@
 import React from "react";
+import { useState } from "react";
+import "./Profile.css";
 import { Link } from "react-router-dom";
 import SecondHeader from "../../../components/Header/SecondHeader";
+import Camera from "../../../assets/images/camera.png";
+
+import { InputText } from "primereact/inputtext";
+import { Dialog } from "primereact/dialog";
+import Avatar from "react-avatar-edit";
+
+import { Button } from "primereact/button";
 
 const Profile = () => {
+  const [image, setImage] = useState("");
+  const [imagecrop, setImageCrop] = useState("");
+  const [src, setSrc] = useState(false);
+  const [profile, setProfile] = useState([]);
+  const [pview, setPview] = useState(false);
+
+  const profileFinal = profile.map((item) => item.pview);
+
+  const onClose = () => {
+    setPview(null);
+  };
+
+  const onCrop = (view) => {
+    setPview(view);
+  };
+
+  const saveCropImage = () => {
+    setProfile([...profile, { pview }]);
+    setImageCrop(false);
+  };
+
   return (
     <>
       <SecondHeader />
@@ -12,25 +42,64 @@ const Profile = () => {
             <div className="col-lg-4">
               <div className="card mb-4">
                 <div className="card-body text-center">
-                  <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                    alt="avatar"
-                    className="rounded-circle img-fluid"
-                    style={{ width: 150 }}
-                  />
-                  <h5 className="my-3">John Smith</h5>
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                  <div className="d-flex justify-content-center mb-2">
-                    <button type="button" className="btn btn-primary">
-                      Follow
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary ms-1"
+                  <div className="flex flex-column justify-content-center align-items-center">
+                    <img
+                      src={profileFinal.length ? profileFinal : Camera}
+                      alt=""
+                      className="profile__img"
+                    />
+                    <label
+                      onClick={() => setImageCrop(true)}
+                      htmlFor=""
+                      className="mt-3 font-semibold text-5xl"
                     >
-                      Message
-                    </button>
+                      add new image
+                    </label>
+                    <Dialog
+                      visible={imagecrop}
+                      header={() => (
+                        <p
+                          htmlFor=""
+                          className="text-2xl font-semibold textcolor"
+                        >
+                          Update Profile
+                        </p>
+                      )}
+                      onHide={() => setImageCrop(false)}
+                    >
+                      <Avatar
+                        width={500}
+                        height={400}
+                        onCrop={onCrop}
+                        onClose={onClose}
+                        src={src}
+                        shadingColor={"#474649"}
+                        backgroundColor={"#474649"}
+                      />
+
+                      <div className="flex flex-column align-items-center mt-5 w-12">
+                        <div className="flex justify-content-around w-12 mt-4">
+                          <Button
+                            onClick={saveCropImage}
+                            label="save"
+                            icon="pi pi-check"
+                          />
+                        </div>
+                      </div>
+                    </Dialog>
+                    <InputText
+                      type="file"
+                      accept="/image/*"
+                      style={{ display: "none" }}
+                      onChange={(event) => {
+                        const file = event.target.files[0];
+                        if (file && file.type.substring(0, 5) === "image") {
+                          setImage(file);
+                        } else {
+                          setImage(null);
+                        }
+                      }}
+                    />
                   </div>
                 </div>
               </div>
