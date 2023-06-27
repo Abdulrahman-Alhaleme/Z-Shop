@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 
 const Login = () => {
+  const [UserInput, setUserInput] = useState({
+    email: "",
+    password: "",
+  });
+  const Navigate = useNavigate();
+  const [newUser, setNewUser] = useState(
+    JSON.parse(localStorage.getItem("newUser")) || []
+  );
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (
+      (newUser.email === UserInput.email ||
+        newUser.userName === UserInput.email) &&
+      newUser.password === UserInput.password
+    ) {
+      Navigate("/product");
+    } else {
+      alert("user name or password is wrong.");
+    }
+  }
   return (
     <>
       <Header />
@@ -27,7 +48,7 @@ const Login = () => {
                 </div>
               </div>
               <div className="card-body">
-                <form>
+                <form onSubmit={(e) => handleSubmit(e)}>
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i
@@ -37,6 +58,14 @@ const Login = () => {
                     </span>
                     <input
                       type="text"
+                      name="email"
+                      value={UserInput.email}
+                      onChange={(e) => {
+                        setUserInput({
+                          ...UserInput,
+                          [e.target.name]: e.target.value,
+                        });
+                      }}
                       className="form-control"
                       placeholder="أسم المستخدم"
                       aria-label="Username"
@@ -49,6 +78,14 @@ const Login = () => {
                     </span>
                     <input
                       type="text"
+                      name="password"
+                      value={UserInput.password}
+                      onChange={(e) => {
+                        setUserInput({
+                          ...UserInput,
+                          [e.target.name]: e.target.value,
+                        });
+                      }}
                       className="form-control"
                       placeholder="كلمة السر"
                       aria-label="Username"

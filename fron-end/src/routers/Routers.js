@@ -19,31 +19,35 @@ import Contact from '../pages/customer/Contact/Contact'
 import Products from '../pages/customer/Produscts/Products'
 import AboutUs from '../pages/About-us/AboutUs'
 import Shopes from '../pages/Shopes/Shopes'
+import NewProduct from '../pages/NewShop/New product/NewProduct'
+import ShoppingCartProvider from "../context/ShoppingCartContext"
 
 const Routers = () => {
     return (
+        <ShoppingCartProvider>
+            <Routes>
 
-        <Routes>
+                <Route path='/' element={<Navigate to="home" />} />
+                <Route path='/home' element={<Home />} />
+                <Route path='/subscription' element={<Subscription />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/newcustomer' element={<Newcustomer />} />
+                <Route path='/loginSeller' element={<LoginSeller />} />
+                <Route path='/signupSeller' element={<SignupSeller />} />
+                <Route path='/product' element={<Product />} />
+                <Route path='/order' element={<Order />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/dashBoard' element={<DashBoard />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/products' element={<Products />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/about-us' element={<AboutUs />} />
+                <Route path='/shopes' element={<Shopes />} />
+                <Route path='/newProduct' element={<NewProduct />} />
 
-            <Route path='/' element={<Navigate to="home" />} />
-            <Route path='/home' element={<Home />} />
-            <Route path='/subscription' element={<Subscription />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/newcustomer' element={<Newcustomer />} />
-            <Route path='/loginSeller' element={<LoginSeller />} />
-            <Route path='/signupSeller' element={<SignupSeller />} />
-            <Route path='/product' element={<Product />} />
-            <Route path='/order' element={<Order />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/dashBoard' element={<DashBoard />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/about-us' element={<AboutUs />} />
-            <Route path='/shopes' element={<Shopes />} />
-
-        </Routes>
+            </Routes>
+        </ShoppingCartProvider>
 
 
     )
