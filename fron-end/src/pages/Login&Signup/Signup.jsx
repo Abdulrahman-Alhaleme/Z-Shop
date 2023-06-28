@@ -6,13 +6,58 @@ import Footer from "../../components/Footer/Footer";
 import axios from "axios";
 
 const Signup = () => {
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState();
   const [users, setUsers] = useState({
     name: "",
     email: "",
     password: "",
+    re_password: "",
     shopname: "",
   });
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    const errors = {};
+
+    // Perform validation checks
+    if (!users.name) {
+      errors.name = "Name is required";
+    }
+
+    if (!users.email) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(users.email)) {
+      errors.email = "Must be example@test.com";
+    }
+    // if (!users.phoneNumber) {
+    //   errors.phoneNumber = "phone number is required";
+    // } else if (!/^07\d{8}$/.test(users.phoneNumber)) {
+    //   errors.phoneNumber = "Must be like this 07xxxxxxxx";
+    // }
+
+    if (!users.password) {
+      errors.password = "password is required";
+    } else if (users.password.length < 6) {
+      errors.password = "Password must contain at least 6 characters";
+    } else if (!/^[a-zA-Z0-9!@#$%^&*]+$/.test(users.password)) {
+      errors.password =
+        "The password must contain English letters, numbers and special characters";
+    } else if (!/\d/.test(users.password)) {
+      errors.password = "Password must contain at least one number";
+    } else if (!/[!@#$%^&*]/.test(users.password)) {
+      errors.password =
+        "Password must contain at least one special character (!@#$%^&*).";
+    }
+    if (!users.shopname) {
+      errors.shopname = "Shop Name is required";
+    }
+
+    if (users.password !== users.re_password) {
+      errors.re_password = "passwords are not match";
+    }
+    return errors;
+  };
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -27,6 +72,21 @@ const Signup = () => {
 
   const handleChange = (e) => {
     setUsers((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm();
+    if (Object.keys(errors).length === 0) {
+      try {
+        axios.post("http://localhost:4400/signup", users);
+        navigate("/profile");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setErrors(errors);
+    }
   };
 
   return (
@@ -51,7 +111,7 @@ const Signup = () => {
                 </div>
               </div>
               <div className="card-body">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fa-solid fa-envelope" />
@@ -66,6 +126,12 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
+                  <div>
+                    {errors.email && (
+                      <span className="text-danger">{errors.email}</span>
+                    )}
+                  </div>
+
                   <div></div>
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
@@ -81,6 +147,11 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
+                  <div>
+                    {errors.name && (
+                      <span className="text-danger">{errors.name}</span>
+                    )}
+                  </div>
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fas fa-key " />
@@ -94,6 +165,11 @@ const Signup = () => {
                       aria-label="Username"
                       aria-describedby="basic-addon1"
                     />
+                  </div>
+                  <div>
+                    {errors.password && (
+                      <span className="text-danger">{errors.password}</span>
+                    )}
                   </div>
 
                   <div className="input-group mb-3">
@@ -109,12 +185,18 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
+                  <div>
+                    {errors.re_password && (
+                      <span className="text-danger">{errors.re_password}</span>
+                    )}
+                  </div>
 
                   <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">
                       <i className="fa-solid fa-shop" />
                     </span>
                     <input
+                      // required
                       type="text"
                       name="shopName"
                       onChange={handleChange}
@@ -124,13 +206,19 @@ const Signup = () => {
                       aria-describedby="basic-addon1"
                     />
                   </div>
+                  <div>
+                    {errors.shopname && (
+                      <span className="text-danger">{errors.shopname}</span>
+                    )}
+                  </div>
                   <div className="form-group d-flex justify-content-end ">
-                    <input
+                    <button
                       type="submit"
-                      onClick={handleClick}
                       defaultValue="البدأ"
                       className="btn float-right login_btn"
-                    />
+                    >
+                      البدأ
+                    </button>
                   </div>
                 </form>
               </div>
