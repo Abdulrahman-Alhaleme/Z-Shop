@@ -100,11 +100,11 @@ function generateToken({ name, email }) {
 
 app.post("/signup", async (req, res) => {
     try {
-        const { name, email, password, shopName } = req.body;
+        const { name, email, password, shopname } = req.body;
 
         const query = "INSERT INTO userinfo (name, email, password, shopname) VALUES ($1, $2, $3, $4) RETURNING *";
         const hashpassword = await bcrypt.hash(password, 10)
-        const values = [name, email, hashpassword, shopName];
+        const values = [name, email, hashpassword, shopname];
         const token = generateToken({
             name, email
         })
@@ -176,6 +176,16 @@ app.get("/signup/:id", async (req, res) => {
         res.status(201).json({ error: "Internal server error" });
     }
 });
+
+// delete a user
+app.delete("/signup/:id", (req, res) => {
+    const userid = req.params.id;
+    const q = "DELETE FROM userinfo WHERE id = $1"
+    pool.query(q, [userid], (err, data) => {
+        if (err) return res.json(err)
+        return res.json("user has been deleted successfully")
+    })
+})
 // 
 
 

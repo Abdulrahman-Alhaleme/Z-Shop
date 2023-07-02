@@ -26,7 +26,7 @@ const Product = () => {
   const handleDelete = async (id) => {
     try {
       await axios.delete("http://localhost:4400/product/" + id);
-      window.location.reload();
+      setProduct((prevData) => prevData.filter((users) => users.id !== id));
     } catch {}
   };
   return (

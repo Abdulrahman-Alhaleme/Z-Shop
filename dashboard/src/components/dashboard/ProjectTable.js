@@ -1,7 +1,7 @@
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import "./table.css"
 
 
 
@@ -21,12 +21,12 @@ const ProjectTables = () => {
     fetchAllResort();
   }, []);
 
-  // const handleDelete = async (id) => {
-  //   try {
-  //     await axios.delete("http://localhost:4400/signup/" + id);
-  //     window.location.reload();
-  //   } catch {}
-  // };
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete("http://localhost:4400/signup/" + id);
+      setUsers(prevData => prevData.filter(users => users.id !== id));
+    } catch (err) { console.log(err) }
+  };
   return (
     <div>
       <Card>
@@ -43,7 +43,7 @@ const ProjectTables = () => {
                 <th>Email</th>
 
                 <th>Shop Name</th>
-                <th>Edit</th>
+                <th>Approve</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -61,9 +61,10 @@ const ProjectTables = () => {
                   <td>
                     {users.shopname}
                   </td>
-                  <td><i class="fa-solid fa-pen-to-square"></i>
+                  <td><button className="fa-solid fa-check check_button" style={{ color: "#00ff1e" }} />
+
                   </td>
-                  <td><i className="fa-solid fa-trash" style={{ color: "#ff0000" }} /></td>
+                  <td><button onClick={() => handleDelete(users.id)} className="fa-solid fa-trash delete_button" style={{ color: "#ff0000" }} /></td>
                 </tr>
               ))}
             </tbody>

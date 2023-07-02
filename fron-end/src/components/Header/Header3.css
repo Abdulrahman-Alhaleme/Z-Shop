@@ -2,13 +2,9 @@
     padding-bottom: 20px;
 }
 
-.container__link {}
-
-.bottom_line {
-    margin-left: 24.3rem;
+.nav_links {
     border-bottom: 2px solid black;
-    width: 32rem;
-
+    padding: 10px;
 }
 
 .Nav_ {

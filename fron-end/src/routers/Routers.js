@@ -13,7 +13,7 @@ import SignupSeller from '../pages/Login&Signup/SignupSeller'
 import Product from '../pages/NewShop/product/product'
 import Order from '../pages/NewShop/Oreders/Order'
 import Profile from '../pages/NewShop/Profile/Profile'
-import DashBoard from '../pages/NewShop/dashboard/DashBoard'
+
 import Cart from '../pages/customer/Cart/Cart'
 import Contact from '../pages/customer/Contact/Contact'
 import Products from '../pages/customer/Produscts/Products'
@@ -38,7 +38,7 @@ const Routers = () => {
                 <Route path='/product' element={<Product />} />
                 <Route path='/order' element={<Order />} />
                 <Route path='/profile' element={<Profile />} />
-                <Route path='/dashBoard' element={<DashBoard />} />
+
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/products' element={<Products />} />
                 <Route path='/contact' element={<Contact />} />

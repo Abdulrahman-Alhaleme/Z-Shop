@@ -12,7 +12,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
-    re_password: "",
+    rePassword: "",
     shopname: "",
   });
   const navigate = useNavigate();
@@ -53,29 +53,20 @@ const Signup = () => {
       errors.shopname = "Shop Name is required";
     }
 
-    if (users.password !== users.re_password) {
-      errors.re_password = "passwords are not match";
+    if (users.password !== users.rePassword) {
+      errors.rePassword = "passwords are not match";
     }
     return errors;
   };
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-
-    try {
-      await axios.post("http://localhost:4400/signup", users);
-      navigate("/profile");
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleChange = (e) => {
-    setUsers((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setUsers((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(users);
     const errors = validateForm();
     if (Object.keys(errors).length === 0) {
       try {
@@ -110,6 +101,7 @@ const Signup = () => {
                   </span>
                 </div>
               </div>
+
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="input-group mb-3">
@@ -119,6 +111,7 @@ const Signup = () => {
                     <input
                       type="text"
                       name="email"
+                      value={users.email}
                       onChange={handleChange}
                       className="form-control"
                       placeholder="البريد الألكتروني"
@@ -140,6 +133,7 @@ const Signup = () => {
                     <input
                       type="text"
                       name="name"
+                      value={users.name}
                       onChange={handleChange}
                       className="form-control"
                       placeholder="أسم المستخدم"
@@ -159,6 +153,7 @@ const Signup = () => {
                     <input
                       type="text"
                       name="password"
+                      value={users.password}
                       onChange={handleChange}
                       className="form-control"
                       placeholder="كلمة السر"
@@ -178,7 +173,9 @@ const Signup = () => {
                     </span>
                     <input
                       type="text"
-                      name="confirmPassword"
+                      onChange={handleChange}
+                      value={users.rePassword}
+                      name="rePassword"
                       className="form-control"
                       placeholder="تأكيد كلمة السر"
                       aria-label="Username"
@@ -186,8 +183,8 @@ const Signup = () => {
                     />
                   </div>
                   <div>
-                    {errors.re_password && (
-                      <span className="text-danger">{errors.re_password}</span>
+                    {errors.rePassword && (
+                      <span className="text-danger">{errors.rePassword}</span>
                     )}
                   </div>
 
@@ -198,7 +195,8 @@ const Signup = () => {
                     <input
                       // required
                       type="text"
-                      name="shopName"
+                      name="shopname"
+                      value={users.shopname}
                       onChange={handleChange}
                       className="form-control"
                       placeholder="أسم المتجر"
@@ -216,6 +214,7 @@ const Signup = () => {
                       type="submit"
                       defaultValue="البدأ"
                       className="btn float-right login_btn"
+                      // onClick={handleClick}
                     >
                       البدأ
                     </button>
