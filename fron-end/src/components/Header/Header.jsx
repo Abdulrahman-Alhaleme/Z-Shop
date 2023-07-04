@@ -59,12 +59,7 @@ const Header = () => {
               ))}
             </ul>
             <div className="line ps-3 pe-3 d-none d-lg-block" />
-            <Link
-              className="btn b__t__n rounded-pill  ms-lg-5"
-              to="/loginSeller"
-            >
-              تسجيل دخول
-            </Link>
+
             <Link className="btn b__t__n rounded-pill  ms-lg-3" to="/signup">
               افتح متجرك الخاص
             </Link>

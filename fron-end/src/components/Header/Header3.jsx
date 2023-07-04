@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header3.css";
 import { Link } from "react-router-dom";
 import { Button, Nav } from "reactstrap";
+import axios from "axios";
 
 const Header3 = () => {
-  const [newUser, setNewUser] = useState(
-    JSON.parse(localStorage.getItem("newUser")) || []
-  );
+  const [shopname, setShopname] = useState([]);
+
+  useEffect(() => {
+    const fetchAllResort = async () => {
+      try {
+        const res = await axios.get("http://localhost:4400/signup");
+
+        setShopname(res.data.map((user) => user.shopname));
+        console.log(res.data.map((user) => user.shopname));
+        console.log(shopname);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllResort();
+  }, []);
 
   return (
     <>
@@ -30,10 +44,11 @@ const Header3 = () => {
             </div>
             <div className="nav-links"></div>
           </div>
-
+          {/* {shopname.map((shopname) => ( */}
           <div className="text-center mt-3">
-            <h1>{newUser.shopName}</h1>
+            <h1>Shop Name</h1>
           </div>
+          {/* ))} */}
         </div>
       </Nav>
     </>

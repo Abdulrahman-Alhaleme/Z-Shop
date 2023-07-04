@@ -36,7 +36,7 @@ const Products = () => {
     <>
       <Header3 />
 
-      <section className="card_contain">
+      <section className="product__container">
         <Row md={2} xs={1} lg={3} className="g-3">
           {products.map((product) => (
             <div className="product__cards">

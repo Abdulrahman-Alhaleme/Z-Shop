@@ -5,7 +5,6 @@ import SecondHeader from "../../../components/Header/SecondHeader";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import NewProduct from "../New product/NewProduct";
 
 const Product = () => {
   const [products, setProduct] = useState([]);

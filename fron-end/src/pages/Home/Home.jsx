@@ -155,24 +155,23 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="aboutus-section">
+      <div className="aboutus-section" dir="rtl">
         <div className="container">
           <div className="row">
             <div className="col-md-3 col-sm-6 col-xs-12">
               <div className="aboutus">
-                <h2 className="aboutus-title">About Us</h2>
+                <h2 className="aboutus-title">نبذة عن ركن الحرفيين</h2>
                 <p className="aboutus-text">
-                  Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor
-                  eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante,
-                  dapibus in.
+                  نقدم لكم ركن الحرفيين , من خلال بضع خطوات بسيطة ، يمكنك بسهولة
+                  إنشاء وإدارة متجرك عبر الإنترنت. سواء كنت شغوفًا ببيع
+                  المصنوعات اليدوية أو المنتجات المنزلية ، فإن منصتنا توفر الحل
+                  الأمثل. تنقل بسلاسة خلال عملية الإعداد، وابدأ في عرض منتجاتك
+                  أو خدماتك للجمهور العربي. انضم إلينا اليوم وافتح فرصًا لا
+                  نهاية لها لتنمية أعمالك.
                 </p>
-                <p className="aboutus-text">
-                  This is Photoshop's version of Lorem Ipsum. Proin gravida nibh
-                  vel velit auctor aliquet. Aenean sollicitudin, lorem quis
-                  bibendum auctor, nisi elit consequat ipsum, nec sagittis sem
-                </p>
+
                 <Link className="aboutus-more" to="#">
-                  read more
+                  <span className="more_info_home">المزيد من المعلومات</span>
                 </Link>
               </div>
             </div>
@@ -195,12 +194,8 @@ const Home = () => {
                               <span class="glyphicon glyphicon-cog icon"></span>
                           </div> */}
                     <div className="feature-content">
-                      <h4>Work with heart</h4>
-                      <p>
-                        Aenean vulputate eleifend tellus. Aenean leo ligula,
-                        porttitor eu, consequat vitae, eleifend ac, enim.
-                        Aliquam lorem ante, dapibus in.
-                      </p>
+                      <h4>افتح متجرك بسهولة</h4>
+                      <p>قم بفتح متجرك الألكتروني ببضع خوات بسيطة</p>
                     </div>
                   </div>
                 </div>
@@ -210,30 +205,15 @@ const Home = () => {
                               <span class="glyphicon glyphicon-cog icon"></span>
                           </div> */}
                     <div className="feature-content">
-                      <h4>Reliable services</h4>
+                      <h4>خدمة موثوقة</h4>
                       <p>
-                        Donec vitae sapien ut libero venenatis faucibu. Nullam
-                        quis ante. Etiam sit amet orci eget eros faucibus
-                        tincidunt
+                        جرب قوة موقعنا الإلكتروني المتطور الذي يمكّن رواد
+                        الأعمال من فتح متاجرهم الخاصة عبر الإنترنت دون عناء
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="feature-box">
-                  <div className="clearfix">
-                    {/* <div class="iconset">
-                              <span class="glyphicon glyphicon-cog icon"></span>
-                          </div> */}
-                    <div className="feature-content">
-                      <h4>Great support</h4>
-                      <p>
-                        Aenean vulputate eleifend tellus. Aenean leo ligula,
-                        porttitor eu, consequat vitae, eleifend ac, enim.
-                        Aliquam lorem ante, dapibus in.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                <div className="feature-box"></div>
               </div>
             </div>
           </div>

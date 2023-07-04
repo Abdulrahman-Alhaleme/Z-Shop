@@ -141,15 +141,7 @@
     color: #000;
 }
 
-.aboutus-title::after {
-    background: #fdb801 none repeat scroll 0 0;
-    bottom: 0;
-    content: "";
-    height: 2px;
-    left: 0;
-    position: absolute;
-    width: 54px;
-}
+
 
 .aboutus-text {
     color: #606060;
@@ -184,30 +176,9 @@ a:active {
     width: 18%;
 }
 
-.feature .feature-box .iconset::after {
-    background: #fdb801 none repeat scroll 0 0;
-    content: "";
-    height: 150%;
-    left: 43%;
-    position: absolute;
-    top: 100%;
-    width: 1px;
-}
-
-.feature .feature-box .feature-content h4 {
-    color: #0f0f0f;
-    font-size: 18px;
-    letter-spacing: 0;
-    line-height: 22px;
-    margin: 0 0 5px;
-}
 
 
-.feature .feature-box .feature-content {
-    float: left;
-    padding-left: 28px;
-    width: 78%;
-}
+
 
 .feature .feature-box .feature-content h4 {
     color: #0f0f0f;
@@ -221,6 +192,10 @@ a:active {
     color: #606060;
     font-size: 13px;
     line-height: 22px;
+}
+
+.more_info_home {
+    text-decoration: none !important;
 }
 
 /*  */
