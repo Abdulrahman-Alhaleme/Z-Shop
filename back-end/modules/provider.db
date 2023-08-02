@@ -1,0 +1,18 @@
+CREATE TABLE UserInfo (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(50),
+  email VARCHAR(100),
+  password VARCHAR(100),
+  shopname VARCHAR(100)
+);
+
+
+CREATE TABLE Provider (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(100),
+  description TEXT,
+  img VARCHAR(200),
+  price FLOAT,
+  user_id INT,
+  FOREIGN KEY (user_id) REFERENCES UserInfo(id)
+);

@@ -13,15 +13,27 @@ app.use(express.json());
 
 //Get all product
 app.get("/product", async (req, res) => {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    let userId;
+
+    if (token) {
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        userId = decodedToken.id;
+    }
+
     try {
-        const query = "SELECT * FROM provider ";
-        const result = await pool.query(query);
+        const query = "SELECT * FROM provider WHERE user_id = $1";
+        const values = [userId];
+        const result = await pool.query(query, values);
         res.json(result.rows);
     } catch (error) {
         console.log(error);
-        res.status(201).json({ error: "Internal server error" });
+        res.status(500).json({ error: "Internal server error" });
     }
 });
+
 // 
 
 // Get a specific product by ID
@@ -43,23 +55,31 @@ app.get("/product/:id", async (req, res) => {
 });
 
 // Add a new product
-app.post("/newProduct", async (req, res) => {
-    try {
-        const { name, desc, price, img } = req.body;
-        console.log(desc);
-        const query = "INSERT INTO provider (name, description, img, price) VALUES ($1, $2, $3, $4) RETURNING *";
+app.post('/newProduct', (req, res) => {
 
-        const values = [name, desc, img, price];
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
 
-        const result = await pool.query(query, values);
-        res.status(201).json(result.rows[0]);
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            err: "Internal server error",
-            error: error.message
-        });
+    let userId;
+
+    if (token) {
+        const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+        userId = decodedToken.id;
+
     }
+    const { name, description, img, price, user_id } = req.body;
+
+    const query = 'INSERT INTO Provider (name, description, img, price, user_id) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const values = [name, description, img, price, userId];
+
+    pool.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Error executing query', err);
+            res.status(500).json({ error: 'An error occurred' });
+        } else {
+            res.status(200).json(result.rows[0]);
+        }
+    });
 });
 
 // delete a product
@@ -92,9 +112,14 @@ app.get("/", (req, res) => {
     res.send("hello")
 })
 // signup****************************************************
-function generateToken({ name, email }) {
-    const user = { name, email }
-    const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+
+function generateToken(userinfo) {
+    const payload = {
+        id: userinfo.id,
+        name: userinfo.name,
+        email: userinfo.email,
+    };
+    const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
     return token;
 }
 
@@ -102,49 +127,53 @@ app.post("/signup", async (req, res) => {
     try {
         const { name, email, password, shopname } = req.body;
 
-        const query = "INSERT INTO userinfo (name, email, password, shopname) VALUES ($1, $2, $3, $4) RETURNING *";
-        const hashpassword = await bcrypt.hash(password, 10)
+        const query =
+            "INSERT INTO userinfo (name, email, password, shopname) VALUES ($1, $2, $3, $4) RETURNING *";
+        const hashpassword = await bcrypt.hash(password, 10);
         const values = [name, email, hashpassword, shopname];
-        const token = generateToken({
-            name, email
-        })
 
         const result = await pool.query(query, values);
-        res.status(201).json({ user: result.rows[0], token });
+        const newUser = result.rows[0];
+
+        const token = generateToken(newUser); // Generate token for the newly created user
+
+        res.status(201).json({ token });
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            err: "Internal server error",
-            error: error.message
+            error: "Internal server error",
+            message: error.message,
         });
     }
 });
 
-
 app.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
-        const query = "SELECT * FROM userinfo where email = $1 ";
+        const query = "SELECT * FROM userinfo WHERE email = $1";
         const result = await pool.query(query, [email]);
 
-        if (result.rows.length == 0) {
-            console.log('fff');
-            return res.json({ error: "email not found" });
+        if (result.rows.length === 0) {
+            return res.json({ error: "Email not found" });
         }
-        const checkPass = await bcrypt.compare(password, result.rows[0].password);
+
+        const userinfo = result.rows[0];
+        const checkPass = await bcrypt.compare(password, userinfo.password);
+
         if (!checkPass) {
-            return res.json({ error: "Invallid password" });
+            return res.json({ error: "Invalid password" });
         }
-        const token = generateToken({
-            email
-        })
-        res.json({ user: result.rows[0], token });
-        console.log(result.rows[0].password)
+
+        const token = generateToken(userinfo);
+        console.log(userinfo);
+
+        res.json({ token });
     } catch (error) {
         console.log(error);
-        res.status(201).json({ error: "Internal server error" });
+        res.status(500).json({ error: "Internal server error" });
     }
 });
+
 
 //Get all user
 app.get("/signup", async (req, res) => {

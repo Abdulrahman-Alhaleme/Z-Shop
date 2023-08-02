@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const NewProduct = () => {
   const [product, setProduct] = useState({
     name: "",
-    desc: "",
+    description: "",
     price: null,
     img: "",
   });
@@ -18,8 +18,15 @@ const NewProduct = () => {
     e.preventDefault();
     console.log(product);
 
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     try {
-      await axios.post("http://localhost:4400/newProduct", product);
+      await axios.post("http://localhost:4400/newProduct", product, config);
       navigate("/product");
     } catch (err) {
       console.log(err);
@@ -49,7 +56,7 @@ const NewProduct = () => {
 
                   <input
                     type="text"
-                    name="desc"
+                    name="description"
                     onChange={handleChange}
                     placeholder="قم بأضافة معلومات عن المنتج"
                   />

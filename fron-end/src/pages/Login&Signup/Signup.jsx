@@ -64,13 +64,21 @@ const Signup = () => {
     setUsers((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(users);
     const errors = validateForm();
+
     if (Object.keys(errors).length === 0) {
       try {
-        axios.post("http://localhost:4400/signup", users);
+        const response = await axios.post(
+          "http://localhost:4400/signup",
+          users
+        );
+        const { user, token } = response.data;
+
+        localStorage.setItem("token", token); // Store the token in localStorage
+
         navigate("/profile");
       } catch (err) {
         console.log(err);

@@ -9,10 +9,16 @@ import axios from "axios";
 const Product = () => {
   const [products, setProduct] = useState([]);
 
+  const token = localStorage.getItem("token");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
   useEffect(() => {
     const fetchAllResort = async () => {
       try {
-        const res = await axios.get("http://localhost:4400/product");
+        const res = await axios.get("http://localhost:4400/product", config);
         setProduct(res.data);
         console.log(res.data);
       } catch (err) {
@@ -42,9 +48,9 @@ const Product = () => {
         )}
         <div className="BTN__BTN">
           <Link to={"/newProduct"}>
-            <button type="button" class="button__Add">
-              <span class="button__text">Add Item</span>
-              <span class="button__iconnn">
+            <button type="button" className="button__Add">
+              <span className="button__text">Add Item</span>
+              <span className="button__iconnn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -55,7 +61,7 @@ const Product = () => {
                   stroke="currentColor"
                   height="24"
                   fill="none"
-                  class="svg"
+                  className="svg"
                 >
                   <line y2="19" y1="5" x2="12" x1="12"></line>
                   <line y2="12" y1="12" x2="19" x1="5"></line>
